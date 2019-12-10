@@ -1,289 +1,62 @@
-// Drawing Turtle Graphics Style
-// In this homework, you will create a simple drawing program inspired by Turtle Graphics. It will be a much simpler implementation that will only accept right angles (90 degrees).
-
-// Here's an example of what your program should be able to do by the end:
-
-// new Turtle(0, 0)
-//   .forward(5)
-//   .right()
-//   .forward(5)
-//   .right()
-//   .forward(5)
-//   .right()
-//   .forward(5)
-//   .print()
-// The above would log the following to the screen:
-
-// ••••••
-// •    •
-// •    •
-// •    •
-// •    •
-// ••••••
-// The above drew a 5 by 5 square.
-
-// Breaking It Down
-// Before beginning, you should read all instructions.
-
-// The Turtle
-// To begin drawing, your program needs to know where it should begin. Create a Turtle class whose constructor will take two arguments (in order): x & y coordinates.
-
-// Here are some examples:
-
-// // This turtle begins at position (0, 0) on our fictional 5 by 5 grid.
-
-// new Turtle(0, 0);
-
-// // This is an illustration that is part of the explanation.
-// // Your program should not draw it.
-// //
-// //  0 1 2 3 4
-// // 0•─┼─┼─┼─┼
-// // 1┼─┼─┼─┼─┼
-// // 2┼─┼─┼─┼─┼
-// // 3┼─┼─┼─┼─┼
-// // 4┼─┼─┼─┼─┼
-
-// // This turtle begins at position (2, 3) on our fictional 5 by 5 grid.
-
-// new Turtle(2, 3);
-
-// //  0 1 2 3 4
-// // 0┼─┼─┼─┼─┼
-// // 1┼─┼─┼─┼─┼
-// // 2┼─┼─┼─┼─┼
-// // 3┼─┼─•─┼─┼
-// // 4┼─┼─┼─┼─┼
-
-// Moving The Turtle
-// Create a forward method that takes a number of steps then updates the Turtle instance with its new position after moving that many steps. Keep track of every movement the turtle makes including the first one.
-
-// For example:
-
-// // This turtle begins at position (0, 0) on our fictional 5 by 5 grid, then
-// // moves forward 3 steps positioning itself at (3, 0) indicated by the `*`
-// // on the grid. You should record these 2 positions.
-
-// new Turtle(0, 0).forward(3);
-
-// // Figure of turtle's movement on a grid.
-// // LEGEND
-// // • – Starting Location
-// // * – End Location
-// // 
-// //  0 1 2 3 4
-// // 0•-----*─┼
-// // 1┼─┼─┼─┼─┼
-// // 2┼─┼─┼─┼─┼
-// // 3┼─┼─┼─┼─┼
-// // 4┼─┼─┼─┼─┼
-// Turning The Turtle
-// Create a right method that takes zero arguments. When right is called, update the Turtle instance to rotate its facing to the right. A turtle should begin facing east.
-
-// For example:
-
-// // This turtle begins at position (0, 0), then moves forward 3 steps to (3, 0), 
-// // then turns right (facing south), then moves 2 steps to (3, 2).
-
-// new Turtle(0, 0).forward(3).right().forward(2);
-
-// // Figure of turtle's movement on a grid.
-// // LEGEND
-// // • – Starting or in-between locations
-// // * – End locations
-// // 
-// //  0 1 2 3 4
-// // 0•-----•─┼
-// // 1┼─┼─┼─|─┼
-// // 2┼─┼─┼─*─┼
-// // 3┼─┼─┼─┼─┼
-// // 4┼─┼─┼─┼─┼
-// Create a left method like right but turns the turtle's facing to the left.
-
-// For example:
-
-// // This turtle begins at position (0, 4), then moves forward 3 steps to (3, 4), 
-// // then turns right (facing north), then moves 3 steps to (3, 1).
-
-// new Turtle(0, 4).forward(3).left().forward(3);
-
-// // Figure of turtle's movement on a grid.
-// // LEGEND
-// // • – Starting or in-between locations
-// // * – End locations
-// // 
-// //  0 1 2 3 4
-// // 0┼─┼─┼─┼─┼
-// // 1┼─┼─┼─*─┼
-// // 2┼─┼─┼─|─┼
-// // 3┼─┼─┼─|─┼
-// // 4•-----•─┼
-// All Points
-// Create an allPoints method which returns an array containing all coordinates the turtle has walked over.
-
-// For example:
-
-// const flash = new Turtle(0, 0).forward(3).left().forward(3);
-
-// // Figure of turtle's movement on a grid.
-// // LEGEND
-// // • – Starting or in-between locations
-// // * – End locations
-// //
-// //  0 1 2 3 4
-// // 0┼─┼─┼─┼─┼
-// // 1┼─┼─┼─*─┼
-// // 2┼─┼─┼─|─┼
-// // 3┼─┼─┼─|─┼
-// // 4•-----•─┼
-// //
-// // Flash, the turtle, has walked around the grid quite bit. She's touched at 
-// // least 7 coordinates.
-// //
-// // Looking at the grid above, she walked over (0, 4), (1, 4), (2, 4) and (3, 4).
-// // After turning left, she walked over (3, 3), (3, 2) and (3, 1). That's 7 
-// // coordinates. Using the method allPoints on flash should return all these
-// // coordinates in an array in the order she walked over them.
-
-// flash.allPoints()
-
-// // returns [ [0, 4], [1, 4], [2, 4], [3, 4], [3, 3], [3, 2], [3, 1] ]
-// Print
-// Create a print method that draws the path that the turtle walked over as a string and logs it to the console. You should use the array of coordinates returned by .allPoints() as your starting point.
-
-// Example usage:
-
-// const flash = new Turtle(0, 0).forward(3).left().forward(3);
-// flash.print();
-
-// // -- BEGIN LOG
-// //    •
-// //    •
-// // ••••
-// // -- END LOG
-// When implementing print, feel free to choose any character you prefer to represent the turtles path instead of # and feel free to choose another one for the background instead of _.
-
-// Here is another example with alternate characters:
-
-// new Turtle(0, 4)
-//   .forward(3)
-//   .left()
-//   .forward(3)
-//   .right()
-//   .forward(5)
-//   .right()
-//   .forward(8)
-//   .right()
-//   .forward(5)
-//   .right()
-//   .forward(3)
-//   .left()
-//   .forward(3)
-//   .print();
-
-// // -- BEGIN LOG
-// // □□□□□□□□□□
-// // □□□■■■■■■□
-// // □□□■□□□□■□
-// // □□□■□□□□■□
-// // ■■■■□□□□■□
-// // □□□□□□□□■□
-// // ■■■■□□□□■□
-// // □□□■□□□□■□
-// // □□□■□□□□■□
-// // □□□■■■■■■□
-// // -- END LOG
-// */
-// Stretch
-// As A Script
-// Make the turtle graphics program usable as a script. It should take a string as a an argument that is seperated by dashes (i.e. -). This string will contain all turtle commands in abbreviated form:
-
-// tX,Y for new Turtle where X & Y are numbers representing the starting x & y coordinates. If this command is not given, begin the turtle at (0, 0).
-// fN for forward where N is a number representing how many units the turtle moves forward.
-// r for right
-// l for left
-// Example usage:
-
-// $ node turtle.js t5,5-f10-r-f5-r-f10-r-f5-r-f2-r-f5-l-f2-l-f5
-
-
-
-
-
-//      •••••••••••
-//      • • •     •
-//      • • •     •
-//      • • •     •
-//      • • •     •
-//      •••••••••••
-// $ node turtle.js f10-r-r-f10-l-f5-l-f10-r-f5-r-f11
-// •••••••••••
-// •
-// •
-// •
-// •
-// •••••••••••
-//           •
-//           •
-//           •
-//           •
-// •••••••••••
-// Save To a File
-// Have your script accept an option --output=<filename> where <filename> corresponds to the name of a file. If the option is used, write the turtle drawing to the file using fs.writeFile. Notify the user of that the write was completed.
-
-// Example usage:
-
-// $ node --output=drawing.txt f10-r-f10-r-f10-r-f10
-// 🐢 Drawing written to drawing.txt
-
-
-
-
-
-
-
-
-
-
 class Turtle {
     constructor (x, y){
         this.x = x || 0;
         this.y = y || 0;
         this.direction = 0;
-        
-        
+        this.coordinates = [[this.x,this.y]];
     }
 
     forward(step){
         if (this.direction === 0){
            this.x += step; 
            this.y =this.y;
-
-
+           this.coordinates.push([this.x,this.y]);
+           return this;
+           
         }
         else if (this.direction === -1){
            this.x =this.x; 
            this.y +=step * -1;
+           this.coordinates.push([this.x,this.y]);
+           return this;
         }
         else if(this.direction === - 2){
-            this.x = step * - 1;
+            this.x += step * - 1;
             this.y = this.y;
+            this.coordinates.push([this.x,this.y]);
+            return this;
         }
         else if(this.direction === -3 ){
             this.x = this.x;
             this.y += step;
+            this.coordinates.push([this.x,this.y]);
+            return this;
+            
         }
         else if (this.direction === 1){
             this.x =this.x; 
-            this.y +=step ;
+            this.y +=step;
+            this.coordinates.push([this.x,this.y]);
+            return this;
+            
          }
-         else if(this.direction === 2){
-             this.x = step * - 1;
+        else if(this.direction === 2){
+             this.x += step * - 1;
              this.y = this.y;
+             this.coordinates.push([this.x,this.y]);
+             return this;
+
          }
+        
          else if(this.direction === 3 ){
              this.x = this.x;
              this.y += step * -1;
+             this.coordinates.push([this.x,this.y]);
+             return this;
+             
+         }else {
+             console.log(`add a number`)
+             return this;
          }
 
     }
@@ -291,39 +64,74 @@ class Turtle {
     right(){
         this.direction -= 1;
         if (this.direction <= -4 ){
-        this.direction =0
-       }
+        this.direction =0;
+        }
+        return this
     }
 
     left(){
-        this.direction += 1
+        this.direction += 1;
         if (this.direction >= 4 ){
-        this.direction =0
-       }
+        this.direction =0;
+        }
+        return this
     }
 
     allPoints(){
-        
-
-
+        return this.coordinates
     }
 
+    print(){
+        let maxX = -Infinity;
+        let maxY = -Infinity;
+        let minX = Infinity;
+        let minY = Infinity;
+
+        for(let coor of this.coordinates) {
+            if(coor[0] > maxX) {
+                maxX = coor[0];
+            }
+            if(coor[1] > maxY) {
+                maxY = coor[1];
+            }
+            if(coor[0] < minX) {
+                minX = coor[0];
+            }
+            if(coor[1] < minY) {
+                minY = coor[1];
+            }
+            
+        }
+
+        const coordExists = (x, y) => {
+            for(let step of this.coordinates) {
+                if (step[0] === x && step[1] === y) return true;
+            }
+            return false;
+        }
+
+        // start going through every coordinate
+        console.log("-- BEGIN LOG");
+     for (let y = maxY + 1; y >= minY; y--) {
+      let line = '';
+      for (let x = minX; x <= maxX + 1; x++) {
+        if (coordExists(x, y)) {
+          line += "■";
+        } else {
+          line += "□";
+        }
+      }
+      console.log(line);
+    }
+    console.log("-- END LOG");
+  }
    
-    
 }
-
-const Sandro = new Turtle(0,0); // 3,0
-Sandro.forward(1)
-Sandro.right()
-Sandro.forward(1)
-Sandro.left()
-Sandro.forward(3)
-Sandro.forward(3)
-Sandro.left()
-Sandro.forward(3)
+const flash = new Turtle(0,0).forward(10).right().forward(1).left().forward(10)
 
 
+flash.print()
 
 
-console.log(Sandro)
+console.log(flash)
 
