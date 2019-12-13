@@ -12,11 +12,11 @@ const todoList = answer => {
         view();
     } else if (answer === 'n') {
         add();
-    } else if (answer[0] === 'c' && answer[1] === typeof 'number') {
+    } else if (answer[0] === 'c') {
         number = answer[1];
         complete(number);
         menu();
-    } else if (answer[0] === 'd' && answer[1] === typeof 'number') {
+    } else if (answer[0] === 'd') {
         number = answer[1];
         del(number);
         menu();
@@ -72,7 +72,7 @@ function add() {
 
 //complete task of the list
 function complete(number) {
-    if (number > list.length) {
+    if (number >= list.length) {
         console.log(`\nInvalid Number\n`);
         view()
     } else {
@@ -84,7 +84,7 @@ function complete(number) {
 
 // delete task of the list
 function del(number) {
-    if (number > list.length) {
+    if (number >= list.length) {
         console.log(`\nInvalid Number\n`);
         menu()
     } else {
