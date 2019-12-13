@@ -5,8 +5,6 @@ const rl = readline.createInterface({
 });
 
 
-
-
 const todoList = answer =>{
     if( answer === 'v'){
         view();
@@ -27,43 +25,49 @@ const todoList = answer =>{
         menu();
     }
 };
-
+let count = 0;
 let menu = () => {
-    
-    rl.question(
-    
-    `(v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit\n>`,
-    todoList
-)};
-menu();
+    if(count === 0){
+        count++
+        rl.question(`\nWelcome to Todo CLI!\n--------------------\n
+        (v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit\n>`,todoList)
+        
+        
+    }else{
+    rl.question(`\n(v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit\n>`,todoList)};
+    }
+ 
 
 let list = []
-
+menu()
 function view () {
+    if(list.length === 0){
+        console.log(`\nList is empty...`)
+    }else{
     list.map((item,index)=>{
         if(item.done){
             console.log(`${index} [✓] ${item.task}`)
         }else{
             console.log(`${index} [ ] ${item.task}`)
-        }})
+        }})};
         menu();
 };
+
 function add(){
-    rl.question(`What?\n>`, (answer)=>{
+    rl.question(`\nWhat?\n>`, (answer)=>{
         list.push({task: answer, done: false})
-        console.log(list)
         menu();
     });
 };
 function complete (number){
     list[number].done = true
-    console.log(`Completed ${list[number].task}`)
+    console.log(`\nCompleted ${list[number].task}\n`)
     menu();
 };
 function del (number) {
     let task=list[number].task
     list.splice(number, 1); 
-    console.log(`Deleted ${task}`);
+    console.log(`\nDeleted ${task}\n`);
     menu();
 };
 function quit (){
