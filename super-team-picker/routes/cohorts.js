@@ -30,12 +30,13 @@ router.post("/", (req,res)=>{
        })
    })
 
-  //  router.get("/:id", (req, res) => {
-  //   knex.delete()
-  //     .then(() => {
-  //       res.redirect("/cohorts");
-  //     });
-  // });
+   router.delete("/:id", (req, res) => {
+    const id = req.params.id
+    knex.delete(id)
+      .then(() => {
+        res.redirect("/cohorts");
+      });
+  });
 
    // NAME: notes#show, METHOD: GET, PATH: /notes/:id
 router.get("/show/:id", (req, res) => {
@@ -52,13 +53,15 @@ router.get("/show/:id", (req, res) => {
   const id = req.params.id
   const method= req.query.method
   const quantity= req.query.quantity
+  console.log(method)
+  console.log(quantity)
   knex.getOne(id)
     .then(cohort => {
       if (id) {
         res.render("show", {
           cohort,
-          method: req.query,
-          quantity: req.query,
+          method,
+          quantity,
           teamList:teamList(cohort, method, quantity )
         });
         
