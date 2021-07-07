@@ -1,0 +1,37 @@
+
+<%- include("./partials/header") %> 
+<form action="/cohorts" method= "POST">
+    <div class="form-group">
+        <label for="imageUrl">Image Url</label>
+        <input
+          type="url"
+          name="imageUrl"
+          class="form-control"
+          placeholder=" enter Image URL"
+        />
+      </div>
+    
+    <div class="form-group">
+        <label for="title">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="title"
+          placeholder="Enter the title"
+        />
+      </div>
+     
+      <div class="form-group">
+        <label for="content">Members</label>
+        <textarea
+          class="form-control"
+          name="content"
+          placeholder="Team members"
+        ></textarea>
+      </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</body>
+</html>

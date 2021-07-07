@@ -1,0 +1,21 @@
+<%- include("./partials/header") %>
+
+
+  
+
+  <% cohorts.forEach((cohort, index) => { %>
+<div class="card mt-3">
+    <div class="card-body mt-3">
+        <h5 class="card-title"><img src="<%= cohort.imageUrl%>" alt="Team Logo" class="img-circle team-logo rounded-circle mr-3 small" height="72px" width="72px"><%= cohort.title %> <%= cohort.id %></h5>
+        <p class="card-text"><%= cohort.content %></p>
+        <a href="/cohorts/show/<%= cohort.id %>" class="btn btn-primary ml-2">Show Team </a>        
+    </div>
+    <br>
+</div>
+<% }) %>
+
+
+</div>
+</body>
+</html>
+
