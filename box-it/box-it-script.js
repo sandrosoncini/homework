@@ -41,7 +41,7 @@ const boxIt = (arr) => {
 
 
 }
-console.log(boxIt(["jon snow", "cersein lanister", "sandro"]))
+console.log(boxIt(["jon snow", "cersei lanister", "sandro"]))
 
 
 
